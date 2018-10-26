@@ -197,6 +197,79 @@ public class CircularList {
 		}		
 	}
 	
+	//Count nodes in circular linked list.
+	public int countList(Node head) {
+		
+		Node temp = head;
+		int count = 0 ;
+		
+		if(head == null) {
+			System.out.println("Do not have any data");
+			return 0;
+		}
+			
+		do {
+			
+			count = count + 1;
+			temp = temp.link;
+		}
+		while(temp != head); 
+		
+		
+		
+		return count;
+		
+	}
+	
+	//Josephus circle using Circular Linked List
+	
+	public int jCircle(Node head, int m) {
+		Node temp = head;
+		Node prevTemp = null;
+		
+		if(temp == null)
+			return 0;
+		
+		while(countList(temp) != 1) {
+			
+			for(int i = 1 ; i< m; i++) {
+				prevTemp = temp;
+				temp = temp.link;
+				
+				//System.out.println(prevTemp.data);
+			}
+			
+			prevTemp.link = temp.link;
+			temp = temp.link;
+				
+		}
+		return temp.data;
+			
+	}
+	
+	//Exchange first and last node in single Circular linked list.
+	
+	public void exchangeFirstLast(Node head) {
+		Node temp = head;
+		Node prevTemp = null;
+		
+		temp = temp.link;
+		
+		while(temp.link != head) {
+			prevTemp = temp;
+			temp = temp.link;
+			//System.out.println(prevTemp.data);
+		}
+		
+		prevTemp.link = head;
+		temp.link = head.link;
+		head.link = temp;
+		head = temp;
+		
+		printList(head);
+	}
+	
+	
 	public static void main(String[] args) {
 		CircularList cl = new CircularList();
 		cl.head = new Node(1);
@@ -204,7 +277,7 @@ public class CircularList {
 		Node thirdItem = new Node(3);
 		Node fourthItem = new Node(4);
 		Node fifthItem = new Node(5);
-		Node sixthItem = new Node(6);
+//		Node sixthItem = new Node(6);
 		
 		cl.head.link = secondItem;
 		secondItem.link = thirdItem;
@@ -228,7 +301,15 @@ public class CircularList {
 		
 		//cl.insertAfter(20, thirdItem);
 		
-		cl.deleteNode(thirdItem);
+	//	cl.deleteNode(thirdItem);
+		
+//		int x = cl.countList(cl.head);
+//		System.out.println(x);
+		
+//		int y = cl.jCircle(cl.head, 3);
+//		System.out.println(y);
+		
+		cl.exchangeFirstLast(cl.head);
 		
 	}
 	
