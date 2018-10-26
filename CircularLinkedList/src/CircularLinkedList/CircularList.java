@@ -253,6 +253,24 @@ public class CircularList {
 		Node temp = head;
 		Node prevTemp = null;
 		
+		if(temp == null) {
+			return;
+		}
+		
+		if(temp.link == head) {
+			printList(head);
+			return;
+		}
+			
+		
+		
+		if(temp.link.link == head) {
+			head = temp.link;
+			printList(head);
+			return;	
+		}
+		
+
 		temp = temp.link;
 		
 		while(temp.link != head) {
@@ -277,14 +295,14 @@ public class CircularList {
 		Node thirdItem = new Node(3);
 		Node fourthItem = new Node(4);
 		Node fifthItem = new Node(5);
-//		Node sixthItem = new Node(6);
+		Node sixthItem = new Node(6);
 		
 		cl.head.link = secondItem;
 		secondItem.link = thirdItem;
 		thirdItem.link = fourthItem;
 		fourthItem.link = fifthItem;
-		fifthItem.link = cl.head;
-		//sixthItem.link = cl.head;
+		fifthItem.link = sixthItem;
+		sixthItem.link = cl.head;
 		
 		
 		//System.out.println("Content of the circular linked list:");
